@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>flights#new</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+    <h1>Add a New Flight</h1>
+    <form action="/flights" method="POST">
+        <div>
+            <label for="airline">Airline: </label>
+            <input id="airline" type="text" name="airline">
+        </div>
+        <div>
+            <label for="flight-number">Flight Number: </label>
+            <input id="flight-number" type="number" name="flightNo">
+        </div>
+        <div>
+            <label for="date">Departure Date: </label>
+            <input id="date" type="datetime-local" name="departs" value="<%= moment().format('YYYY-MM-DDTHH:mm') %>">
+        </div>
+        <div>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</body>
+</html>
