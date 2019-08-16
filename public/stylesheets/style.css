@@ -1,8 +1,46 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  height: 100vh;
 }
 
 a {
   color: #00B7FF;
 }
+
+.flights-idx-ctnr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90vw;
+}
+section.flights-idx {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+.airline {
+  width: 30%;
+}
+.flightnum {
+  width: 30%;
+}
+.departs {
+  width: 40%;
+}
+
+.show-container {
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+}
+.show-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.show-detail>p {
+  margin: 0 0 0 10vw;
+}
+

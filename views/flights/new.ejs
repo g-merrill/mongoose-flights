@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>flights#new</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
@@ -9,15 +12,36 @@
     <form action="/flights" method="POST">
         <div>
             <label for="airline">Airline: </label>
-            <input id="airline" type="text" name="airline">
+            <select name="airline" id="airline">
+                <option value="American">American</option>
+                <option value="Southwest">Southwest</option>
+                <option value="United">United</option>
+            </select>
         </div>
         <div>
             <label for="flight-number">Flight Number: </label>
-            <input id="flight-number" type="number" name="flightNo">
+            <input id="flight-number" type="number" name="flightNo" placeholder="Between 10 & 9999">
         </div>
         <div>
             <label for="date">Departure Date: </label>
-            <input id="date" type="datetime-local" name="departs" value="<%= moment().format('YYYY-MM-DDTHH:mm') %>">
+    <!--    node package moment's format method allows me to skip the following code -->
+    <!--    <% let date = new Date(); %>
+            <% let yearStr = `${date.getFullYear() + 1}`; %>
+            <% let monthStr = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : `${date.getMonth() + 1}` %>
+            <% let dateStr = date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}` %>
+            <% let hoursStr = date.getHours() < 10 ? `0${date.getHours()}` : `${date.getHours()}` %>
+            <% let minutesStr = date.getMinutes() < 10 ? `0${date.getMinutes()}` : `${date.getMinutes()}` %>
+            <% let fullDateString = `${yearStr}-${monthStr}-${dateStr}T${hoursStr}:${minutesStr}` %> -->
+            <input id="date" type="datetime-local" name="departs" value="<%= defaultDepartDate %>">
+        </div>
+        <div>
+            <label for="airport">From: </label>
+            <select name="airport" id="airport">
+                <option value="AUS">AUS</option>
+                <option value="DAL">DAL</option>
+                <option value="LAX">LAX</option>
+                <option value="SEA">SEA</option>
+            </select>
         </div>
         <div>
             <input type="submit" value="Submit">

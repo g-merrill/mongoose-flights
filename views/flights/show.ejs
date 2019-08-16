@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>flights#show</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+    <h1>Flight Details Page</h1>
+    <div class="show-container">
+        <div class="show-detail">
+            <h3>Airline:</h3>
+            <p><%= flight.airline %></p>
+        </div>
+        <div class="show-detail">
+            <h3>Flight Number:</h3>
+            <p><%= flight.flightNo %></p>
+        </div>
+        <div class="show-detail">
+            <h3>Departure Time:</h3>
+            <p><%= flight.departs %></p>
+        </div>
+        <div class="show-detail">
+            <h3>Departs From:</h3>
+            <p><%= flight.airport %></p>
+        </div>
+        <form action="/flights/<%= flight._id %>" method="POST">
+            <div class="show-detail">
+                <h3>Arrives At:</h3>
+                <select name="airport" id="dest-airport">
+                    <option value="AUS">AUS</option>
+                    <option value="DAL">DAL</option>
+                    <option value="LAX">LAX</option>
+                    <option value="SEA">SEA</option>
+                </select>
+            </div>
+            <div class="show-detail">
+                <h3>Arrival Time:</h3>
+                <input type="datetime-local" name="arrival" value="<%= defaultArriveDate %>">
+            </div>
+            <input type="submit" value="Add Destination">
+        </form>
+        <% flight.destinations.forEach(destination => { %>  
+        <div class="show-detail">
+            <h3>Arrives at:</h3>
+            <p><%= destination.airport %></p>
+        </div>
+        <div class="show-detail">
+            <h3>Arrival Time:</h3>
+            <p><%= destination.arrival %></p>
+        </div>
+        <% }); %>
+
+    </div>
+    <a href="/flights">Return to Flight Index</a>
+    
+</body>
+</html>

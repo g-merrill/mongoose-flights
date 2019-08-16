@@ -1,11 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>flights#index</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
     <h1>Flights Index Page</h1>
-    <%= flights %>
+    <div class="flights-idx-ctnr">
+        <section class="flights-idx hdrs">
+            <h3 class="idx-hdr airline">Airline</h3>
+            <h3 class="idx-hdr flightnum">Flight Number</h3>
+            <h3 class="idx-hdr departs">Departs</h3>
+            <h3 class="idx-hdr details"></h3>
+        </section>
+        <% flights.forEach(flight => { %>
+        <section class="flights-idx txts">
+            <p class="idx-txt airline"><%= flight.airline %></p>
+            <p class="idx-txt flightnum"><%= flight.flightNo %></p>
+            <p class="idx-txt departs"><%= flight.departs %></p>
+            <a href="/flights/<%= flight._id %>" class="idx-txt details">Details</a>
+        </section>
+        <% }); %>
+    </div>
+    <a href="/flights/new">Add a new flight</a>
 </body>
 </html>
