@@ -1,6 +1,7 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   height: 100vh;
+  padding: 5vmin;
 }
 
 a {
@@ -28,7 +29,9 @@ section.flights-idx {
 .departs {
   width: 40%;
 }
-
+hr {
+  width: 100vw;
+}
 .show-container {
   display: flex;
   flex-direction: column;
@@ -43,4 +46,12 @@ section.flights-idx {
 .show-detail>p {
   margin: 0 0 0 10vw;
 }
+.show-detail>.ticket {
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 10vw;
+}
 
+.show-detail>.ticket>p:last-child {
+  margin: 0 0 0 5vw;
+}

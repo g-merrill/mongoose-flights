@@ -1,4 +1,5 @@
 const Flight = require('../models/flight');
+const Ticket = require('../models/ticket');
 const moment = require('moment');
 
 module.exports = {
@@ -33,30 +34,31 @@ function newFlight(req, res) {
 
 function show(req, res) {
     Flight.findById(req.params.id, function(err, flight) {
+        if (err) console.log('flightsCtrl flight find error', err);
         let formattedFlight = {};
         formattedFlight._id = flight._id;
         formattedFlight.airline = flight.airline;
         formattedFlight.flightNo = flight.flightNo;
-        console.log(flight.departs);
         formattedFlight.departs = moment(flight.departs).format("dddd, MMMM Do YYYY, h:mm a");
-        console.log(formattedFlight.departs);
         formattedFlight.airport = flight.airport;
-        // *************************
+        formattedFlight.destinations = [];
         if (flight.destinations.length) {
-            formattedFlight.destinations = flight.destinations;
-            for (let i = 0; i < formattedFlight.destinations.length; i++) {
-                console.log(formattedFlight.destinations[i].arrival);
-                formattedFlight.destinations[i].arrival = moment(formattedFlight.destinations[i].arrival).format("dddd, MMMM Do YYYY, h:mm a");
-                console.log(formattedFlight.destinations[i].arrival);
+            for (let i = 0; i < flight.destinations.length; i++) {
+                // setup a new dest object
+                let dest = {};
+                // add all needed properties to that object 
+                dest.airport = flight.destinations[i].airport;
+                dest.arrival = moment(flight.destinations[i].arrival).format("dddd, MMMM Do YYYY, h:mm a");
+                // push the object into the empty array
+                formattedFlight.destinations.push(dest);
             }
-            // formattedFlight.destinations.forEach(destination => {
-            //     destination.arrival = moment(destination.arrival).format("dddd, MMMM Do YYYY, h:mm a");
-            // });
         }
-        // ***********************
         let defaultArriveDate = moment(flight.departs).add(3, 'hours').format('YYYY-MM-DDTHH:mm');
-        // console.log(formattedFlight)
-        res.render('flights/show', { flight: formattedFlight, defaultArriveDate });
+        Ticket.find({flight: flight._id}, function(err, tickets) {
+            if (err) console.log('flightsCtrl ticket find error', err);
+            console.log('flight: ', formattedFlight, `defaultArriveDate: ${defaultArriveDate}`, 'tickets: ', tickets);
+            res.render('flights/show', { flight: formattedFlight, defaultArriveDate, tickets });
+        });
     });
 }
 
