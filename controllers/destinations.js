@@ -24,7 +24,6 @@ function create(req, res) {
             // let defaultArriveDate = moment(flight.departs).add(3, 'hours').format('YYYY-MM-DDTHH:mm');
             // console.log(formattedFlight)
             // res.render('flights/show', { flight: formattedFlight, defaultArriveDate }
-
             res.redirect(`/flights/${flight._id}`);
         });
     });

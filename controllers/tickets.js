@@ -6,10 +6,13 @@ module.exports = {
     create
 };
 
+let title;
+
 function newTicket(req, res) {
     Flight.findById(req.params.id, function(err, flight) {
         console.log(flight._id);
-        res.render('tickets/new', { flight });
+        title = 'tickets#new';
+        res.render('tickets/new', { flight, title });
     });
 }
 

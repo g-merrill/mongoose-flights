@@ -9,6 +9,8 @@ module.exports = {
     create
 };
 
+let title;
+
 function index(req, res) {
     let formattedflights = [];
     Flight.find({}, function(err, flights) {
@@ -23,13 +25,15 @@ function index(req, res) {
             // formattedFlight.destinations.arrival = flight.destinations.arrival;
             formattedflights.push(formattedFlight);
         });
-        res.render('flights/index', { flights: formattedflights });
+        title = 'flights#index';
+        res.render('flights/index', { flights: formattedflights, title });
     });
 }
 
 function newFlight(req, res) {
     let defaultDepartDate = moment().add(1, 'years').format('YYYY-MM-DDTHH:mm');
-    res.render('flights/new', { defaultDepartDate });
+    title = 'flights#new';
+    res.render('flights/new', { defaultDepartDate, title });
 }
 
 function show(req, res) {
@@ -57,7 +61,8 @@ function show(req, res) {
         Ticket.find({flight: flight._id}, function(err, tickets) {
             if (err) console.log('flightsCtrl ticket find error', err);
             console.log('flight: ', formattedFlight, `defaultArriveDate: ${defaultArriveDate}`, 'tickets: ', tickets);
-            res.render('flights/show', { flight: formattedFlight, defaultArriveDate, tickets });
+            title = 'flights#show';
+            res.render('flights/show', { flight: formattedFlight, defaultArriveDate, tickets, title });
         });
     });
 }
