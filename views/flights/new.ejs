@@ -2,6 +2,7 @@
 
 <h1>Add a New Flight</h1>
 <form class="new-flight-form" action="/flights" method="POST">
+    <hr>
     <div>
         <label for="airline">Airline: </label>
         <select name="airline" id="airline">
@@ -10,10 +11,12 @@
             <option value="United">United</option>
         </select>
     </div>
+    <hr>
     <div>
         <label for="flight-number">Flight Number: </label>
-        <input id="flight-number" type="number" name="flightNo" placeholder="Between 10 & 9999">
+        <input id="flight-number" class="align-right" type="number" name="flightNo" placeholder="Between 10 & 9999">
     </div>
+    <hr>
     <div>
         <label for="date">Departure Date: </label>
 <!--    node package moment's format method allows me to skip the following code -->
@@ -24,18 +27,20 @@
         <% let hoursStr = date.getHours() < 10 ? `0${date.getHours()}` : `${date.getHours()}` %>
         <% let minutesStr = date.getMinutes() < 10 ? `0${date.getMinutes()}` : `${date.getMinutes()}` %>
         <% let fullDateString = `${yearStr}-${monthStr}-${dateStr}T${hoursStr}:${minutesStr}` %> -->
-        <input id="date" type="datetime-local" name="departs" value="<%= defaultDepartDate %>">
+        <input id="date" class="align-right" type="datetime-local" name="departs" value="<%= defaultDepartDate %>">
     </div>
+    <hr>
     <div>
         <label for="airport">From: </label>
-        <select name="airport" id="airport">
+        <select id="airport" name="airport">
             <option value="AUS">AUS</option>
             <option value="DAL">DAL</option>
             <option value="LAX">LAX</option>
             <option value="SEA">SEA</option>
         </select>
     </div>
-    <div>
+    <hr>
+    <div class="submit-btn">
         <input type="submit" value="Submit">
     </div>
 </form>

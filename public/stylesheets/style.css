@@ -71,6 +71,7 @@ section.flights-idx>* {
 }
 .flightnum {
   width: 20%;
+  text-align: center;
 }
 .departs {
   width: 40%;
@@ -92,18 +93,34 @@ hr {
   justify-content: space-between;
   margin: 2vh 0;
 }
-.new-flight-form>div:last-child {
-  align-self: center;
-  width: 10%;
+.new-flight-form>div .align-right {
+  text-align: right;
+  border: 0.25vmin solid;
+  border-radius: 1vmin;
+  padding: 1% 2% 1% 0;
 }
-.new-flight-form>div:last-child>input {
+.new-flight-form>div select {
+  direction: rtl;
+  border: 0.25vmin solid;
+  border-radius: 1vmin;
+  padding: 1% 2% 1% 0;
+}
+
+.submit-btn {
+  width: 60px;
+}
+.submit-btn>input {
   width: 100%;
-  padding: 15% 0;
+  padding: 5px 0;
   border: none;
-  border-radius: 3vmin;
+  border-radius: 5px;
   background-color: #00B7FF;
   color: white;
   font-weight: bold;
+}
+
+.new-flight-form>div:last-child {
+  align-self: center;
 }
 
 .show-container {
@@ -135,15 +152,6 @@ hr {
 .show-dest-form>* {
   margin: 1vh 0;
 }
-.show-dest-form>input {
-  width: 10%;
-  padding: 1.5% 0;
-  border: none;
-  border-radius: 2vmin;
-  background-color: #00B7FF;
-  color: white;
-  font-weight: bold;
-}
 
 .show-detail>.tickets {
   display: flex;
@@ -164,13 +172,16 @@ hr {
   margin: 2vh 0;
 }
 
-.new-ticket-title {
-
-}
 .new-ticket {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 100%;
+  padding: 0 15%;
+}
+.new-ticket hr {
+  width: 100vw;
+  position: relative;
+  left: -30%;
 }
 .new-ticket>div {
   margin: 5vh 0;
@@ -178,15 +189,11 @@ hr {
   justify-content: space-between;
 }
 .new-ticket>div:last-child {
-  width: 40%;
   align-self: center;
 }
-.new-ticket>div:last-child>input {
-  width: 100%;
-  padding: 10% 0;
-  border: none;
-  border-radius: 3vmin;
-  background-color: #00B7FF;
-  color: white;
-  font-weight: bold;
+.new-ticket>div>input {
+  text-align: right;
+  border: 0.25vmin solid;
+  border-radius: 1vmin;
+  padding: 1% 2% 1% 0;
 }
