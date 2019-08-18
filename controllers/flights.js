@@ -5,28 +5,32 @@ const moment = require('moment');
 module.exports = {
     index,
     new: newFlight,
+    sort,
     show,
     create
 };
 
 let title;
+let sorted;
+
 
 function index(req, res) {
-    let formattedflights = [];
     Flight.find({}, function(err, flights) {
+        let formattedflights = [];
         flights.forEach(flight => {
             let formattedFlight = {};
             formattedFlight._id = flight._id;
             formattedFlight.airline = flight.airline;
             formattedFlight.flightNo = flight.flightNo;
+            formattedFlight.passedDeparture = false;
+            if (moment()._d > flight.departs) formattedFlight.passedDeparture = true;
             formattedFlight.departs = moment(flight.departs).format("dddd, MMMM Do YYYY, h:mm a");
             formattedFlight.airport = flight.airport;
-            // formattedFlight.destinations.airport = flight.destinations.airport;
-            // formattedFlight.destinations.arrival = flight.destinations.arrival;
             formattedflights.push(formattedFlight);
         });
         title = 'flights#index';
-        res.render('flights/index', { flights: formattedflights, title });
+        sorted = false;
+        res.render('flights/index', { flights: formattedflights, title, sorted });
     });
 }
 
@@ -34,6 +38,26 @@ function newFlight(req, res) {
     let defaultDepartDate = moment().add(1, 'years').format('YYYY-MM-DDTHH:mm');
     title = 'flights#new';
     res.render('flights/new', { defaultDepartDate, title });
+}
+
+function sort(req, res) {
+    Flight.find({}).sort({departs: 1}).exec(function(err, flights) {
+        let sortedFlights = [];
+        flights.forEach(flight => {
+            let formattedFlight = {};
+            formattedFlight._id = flight._id;
+            formattedFlight.airline = flight.airline;
+            formattedFlight.flightNo = flight.flightNo;
+            formattedFlight.passedDeparture = false;
+            if (moment()._d > flight.departs) formattedFlight.passedDeparture = true;
+            formattedFlight.departs = moment(flight.departs).format("dddd, MMMM Do YYYY, h:mm a");
+            formattedFlight.airport = flight.airport;
+            sortedFlights.push(formattedFlight);
+        });
+        title = 'flights#sort';
+        sorted = true;
+        res.render('flights/index', { flights: sortedFlights, title, sorted });
+    });
 }
 
 function show(req, res) {

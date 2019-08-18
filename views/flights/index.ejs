@@ -3,19 +3,35 @@
 <h1>Flights Index Page</h1>
 <div class="flights-idx-ctnr">
     <section class="flights-idx hdrs">
-        <h3 class="idx-hdr airline">Airline</h3>
-        <h3 class="idx-hdr flightnum">Flight Number</h3>
-        <h3 class="idx-hdr departs">Departs</h3>
-        <h3 class="idx-hdr details"></h3>
+        <h3 class="airline">Airline</h3>
+        <h3 class="flightnum">Flight No.</h3>
+        <div class="departs">
+            <h3>Departs</h3>
+        <% if (sorted) { %>
+            <form action="/flights" method="GET">
+                <input class="sorted" type="submit" value="Sort By Date">
+        <% } else { %>
+            <form action="/flights/sort" method="GET">
+                <input type="submit" value="Sort By Date">
+        <% } %>
+            </form>
+        </div>
+        <h3 class="details"></h3>
     </section>
-    <% flights.forEach(flight => { %>
+    <hr>
+<% flights.forEach(flight => { %>
+    <% if (flight.passedDeparture) { %>
+    <section class="flights-idx txts passed">
+    <% } else { %>
     <section class="flights-idx txts">
-        <p class="idx-txt airline"><%= flight.airline %></p>
-        <p class="idx-txt flightnum"><%= flight.flightNo %></p>
-        <p class="idx-txt departs"><%= flight.departs %></p>
-        <a href="/flights/<%= flight._id %>" class="idx-txt details">Details</a>
+    <% } %>
+        <p class="airline"><%= flight.airline %></p>
+        <p class="flightnum"><%= flight.flightNo %></p>
+        <p class="departs"><%= flight.departs %></p>
+        <a href="/flights/<%= flight._id %>" class="details">Details</a>
     </section>
-    <% }); %>
+    <hr>
+<% }); %>
 </div>
 <a href="/flights/new">Add a new flight</a>
 
