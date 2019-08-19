@@ -5,17 +5,18 @@
     <hr>
     <div>
         <label for="seat">Seat: </label>
-        <input id="seat" name="seat" required pattern="[A-F][1-9]\d?" placeholder="[A-F][1-9]">
+        <input id="seat" class="txt-input" name="seat" required pattern="[A-F][1-9]\d?" placeholder="[A-F][1-9]">
     </div>
     <hr>
     <div>
         <label for="price">Price:</label>
-        <input id="price" type="number" name="price" placeholder="Enter $$ Amount">
+        <input id="price" class="txt-input" type="number" name="price" placeholder="Enter $$ Amount">
     </div>
     <hr>
     <div class="submit-btn">
         <input type="submit" value="Submit">
     </div>
 </form>
+<a href="/flights/<%= flight._id %>">Return to Flight <%= flight.flightNo %> Details</a>
 
 <%- include('../partials/htmlfooter') %>

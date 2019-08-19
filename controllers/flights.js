@@ -1,13 +1,16 @@
 const Flight = require('../models/flight');
 const Ticket = require('../models/ticket');
 const moment = require('moment');
+const Seed = require('../seed');
 
 module.exports = {
     index,
     new: newFlight,
     sort,
     show,
-    create
+    create,
+    seed,
+    delete: deleteAllFlights
 };
 
 let title;
@@ -103,4 +106,19 @@ function create(req, res) {
         console.log(flight);
         res.redirect('/flights');
     });
+}
+
+function seed(req, res) {
+    console.log('running seed func')
+    Seed.deleteTickets();
+    Seed.deleteFlights();
+    Seed.seedFlights();
+    res.redirect('/flights');
+}
+
+function deleteAllFlights(req, res) {
+    console.log('running delete func')
+    Seed.deleteTickets();
+    Seed.deleteFlights();
+    res.redirect('/flights');
 }

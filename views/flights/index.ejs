@@ -34,5 +34,11 @@
 <% }); %>
 </div>
 <a href="/flights/new">Add a new flight</a>
+<form class="defaultFlights-wrapper" action="/flights/seed" method="get">
+    <input class="defaultFlights-input" type="submit" value="Generate Default Flights">
+</form>
+<form class="deleteFlights-wrapper" action="/flights/delete" method="get">
+    <input class="deleteFlights-input" type="submit" value="Delete All Flights">
+</form>
 
 <%- include('../partials/htmlfooter') %>

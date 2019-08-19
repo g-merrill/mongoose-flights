@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* border: solid; */
+  /* border: 1px solid; */
 }
 
 body {
@@ -11,6 +11,7 @@ body {
   padding: 5vmin;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 body>* {
@@ -35,7 +36,12 @@ nav {
 nav>a {
   margin: 0 2vw;
 }
-
+.headerPartial-hr {
+  width: 100vw;
+  position: absolute;
+  left: 0;
+  top: 10vh;
+}
 .flights-idx-ctnr {
   display: flex;
   flex-direction: column;
@@ -51,38 +57,64 @@ section.flights-idx>* {
 }
 .flights-idx.hdrs>.departs {
   display: flex;
+  flex-grow: 1;
 }
 .flights-idx.hdrs>.departs>form {
-  margin: 0 0 0 4vw;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
 }
+/* *********************** */
 .flights-idx.hdrs>.departs>form>input {
-  padding: 5% 10%;
+  padding: 0 10px;
   border-radius: 3vmin;
+  background-color: gray;
+  color: white;
 }
 .flights-idx.hdrs>.departs>form>input.sorted {
   background-color: dimgray;
-  color: white;
 }
+/* *********************** */
 .flights-idx.txts.passed>p {
   color: red;
 }
 .airline {
-  width: 20%;
+  width: 25%;
 }
 .flightnum {
-  width: 20%;
+  width: 15%;
   text-align: center;
 }
 .departs {
   width: 40%;
+  flex-grow: 1;
 }
 .details {
-  width: 20%;
   text-align: center;
 }
 hr {
   width: 100%;
 }
+.flights-idx-ctnr + a {
+  align-self: center;
+}
+form[class*="Flights-wrapper"] {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+input[class*="Flights-input"] {
+  text-decoration: underline;
+}
+.defaultFlights-input {
+  color: #00B7FF;
+}
+.deleteFlights-input {
+  color: red;
+}
+
+
 .new-flight-form {
   display: flex;
   flex-direction: column;
@@ -95,13 +127,13 @@ hr {
 }
 .new-flight-form>div .align-right {
   text-align: right;
-  border: 0.25vmin solid;
+  border: 0.1vmin solid;
   border-radius: 1vmin;
   padding: 1% 2% 1% 0;
 }
 .new-flight-form>div select {
   direction: rtl;
-  border: 0.25vmin solid;
+  border: 0.1vmin solid;
   border-radius: 1vmin;
   padding: 1% 2% 1% 0;
 }
@@ -186,14 +218,15 @@ hr {
 .new-ticket>div {
   margin: 5vh 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 .new-ticket>div:last-child {
   align-self: center;
 }
-.new-ticket>div>input {
+.new-ticket>div>.txt-input {
   text-align: right;
-  border: 0.25vmin solid;
+  border: 0.1vmin solid;
   border-radius: 1vmin;
   padding: 1% 2% 1% 0;
+  margin: 0 0 0 5%;
 }
