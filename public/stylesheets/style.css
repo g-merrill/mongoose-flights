@@ -224,7 +224,7 @@ input[class*="Flights-input"] {
   align-self: center;
 }
 .new-ticket>div>.txt-input {
-  text-align: right;
+  text-align: center;
   border: 0.1vmin solid;
   border-radius: 1vmin;
   padding: 1% 2% 1% 0;
